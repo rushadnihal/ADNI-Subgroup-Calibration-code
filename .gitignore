@@ -1,0 +1,10 @@
+# Never commit ADNI data, derived subject-level files, logs or other people's papers
+data and methods/
+output/interim/
+output/logs/
+papers/
+*.rds
+*.RData
+.Rhistory
+.Rproj.user/
+.DS_Store
