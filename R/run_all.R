@@ -6,7 +6,7 @@
 # from the script's own NN_tests.csv, only if the file was written during this run), and the
 # number of sections that reported "SECTION FAILED" in the script's report.
 #
-# Usage (from the project folder, analysis1111, or its R/ subfolder):
+# Usage (from the project folder or its R/ subfolder):
 #     source("R/run_all.R")                       # all scripts, stops at the first failure
 #     run_all(from = 7, to = 15)                  # a range
 #     run_all(stop_on_fail = FALSE)               # keep going after a failure
@@ -26,7 +26,7 @@ run_all <- function(from = 1, to = 15, stop_on_fail = TRUE,
   for (p in c(start_dir, normalizePath(file.path(start_dir, ".."), mustWork = FALSE))) {
     if (dir.exists(file.path(p, "data and methods"))) { root <- normalizePath(p); break }
   }
-  if (is.null(root)) stop("Cannot find the 'data and methods' folder. setwd() to the analysis1111 folder (or its R/ subfolder) first.")
+  if (is.null(root)) stop("Cannot find the 'data and methods' folder. setwd() to the project folder (or its R/ subfolder) first.")
   setwd(root)
 
   scripts <- sort(list.files("R", pattern = "^[0-9]{2}_.*\\.R$"))

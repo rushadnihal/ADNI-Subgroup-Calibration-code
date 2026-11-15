@@ -2,7 +2,7 @@
 # Configuration and helpers. Every other script sources this automatically,
 # so you never need to run it on its own.
 #
-# HOW TO RUN: set the working directory to the project folder (analysis1111),
+# HOW TO RUN: set the working directory to the project folder,
 # or to its R/ subfolder, then:  source("R/01_audit.R")
 # -------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ find_root <- function() {
     if (dir.exists(file.path(p, "data and methods"))) return(normalizePath(p))
   }
   stop("Cannot find the 'data and methods' folder. ",
-       "setwd() to the analysis1111 folder (or its R/ subfolder) first.")
+       "setwd() to the project folder (or its R/ subfolder) first.")
 }
 
 ROOT <- find_root()

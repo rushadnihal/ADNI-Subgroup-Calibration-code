@@ -2,7 +2,7 @@
 # Read-only data audit. No modelling. Writes aggregate tables (no subject IDs)
 # to output/audit/ and a full text log to output/audit/01_audit_report.txt.
 #
-# Run:  setwd to analysis1111, then  source("R/01_audit.R")
+# Run:  setwd to the project folder, then  source("R/01_audit.R")
 # Takes about 1-3 minutes (UCSFFSX7 is 33 MB).
 # -------------------------------------------------------------------------
 

@@ -14,7 +14,7 @@
 #   output/logs/ (console logs, may hold local paths), papers/ (other people's PDFs), outline.pdf,
 #   .Rhistory, .DS_Store.
 #
-# Usage (from the project folder, analysis1111, or its R/ subfolder):
+# Usage (from the project folder or its R/ subfolder):
 #     source("R/make_github_release.R")
 #     make_github_release()                                  # code only
 #     make_github_release(include_results = TRUE)           # code + aggregate results and figures
@@ -32,7 +32,7 @@ make_github_release <- function(include_results = FALSE, include_paper = FALSE,
   for (p in c(start_dir, normalizePath(file.path(start_dir, ".."), mustWork = FALSE))) {
     if (dir.exists(file.path(p, "data and methods"))) { root <- normalizePath(p); break }
   }
-  if (is.null(root)) stop("Cannot find the 'data and methods' folder. setwd() to the analysis1111 folder first.")
+  if (is.null(root)) stop("Cannot find the 'data and methods' folder. setwd() to the project folder first.")
   setwd(root)
 
   out <- file.path(root, out_name)
