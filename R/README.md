@@ -26,7 +26,7 @@ Run order. Each script sources `00_setup.R` itself, so you only ever run the num
 
 ## How to run
 
-1. Set the working directory to the project folder (`analysis1111`), or to its `R/` subfolder.
+1. Set the working directory to the project folder, or to its `R/` subfolder.
 2. Start a fresh R session, then `source("R/01_audit.R")`, then 02 to 15 (each reads the previous one's output).
 3. If it stops with "Install missing packages", run the `install.packages(...)` line it prints, then repeat.
 
