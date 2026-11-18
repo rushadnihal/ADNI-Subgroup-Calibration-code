@@ -4,25 +4,23 @@ R code for a landmark audit of MCI-to-dementia risk prediction in the Alzheimer'
 
 **Status:** working draft; the accompanying manuscript has not been submitted or peer reviewed.
 
-## Preliminary findings (unpublished)
+## Questions the audit asks
 
-> **These results are unpublished and have not been peer reviewed.** They come from a working draft, from a single ADNI download (11 November 2026), and may change. Do not cite them as established findings. Only aggregate summaries are shown; no participant-level data are included.
+The code follows people with MCI across four landmarks (baseline, 12, 24 and 36 months) and uses subject-level cross-validation throughout. It asks:
 
-The audit follows 1,194 people with MCI across four landmarks (baseline, 12, 24 and 36 months after baseline), giving 2,732 subject-landmark rows. At baseline there are 1,147 rows and 201 dementia events within 2 years. Out-of-fold predictions use subject-level cross-validation. O/E is observed over expected events, so values below 1 mean the model over-predicts risk.
+1. How well calibrated are MCI-to-dementia risk models overall, and with a confirmed-dementia-only outcome?
+2. Does calibration differ by ADNI protocol era (ADNI1, ADNI-GO/2, ADNI3) even when discrimination does not, and what happens when a model trained on the earliest era is applied to the later ones?
+3. How large is loss to follow-up at each landmark, and could it explain calibration gaps (outcome bounds and an IPCW check)?
+4. How many events does each demographic subgroup contribute, and how large a miscalibration could be detected with that many?
+5. Do richer models (more covariates, elastic-net Cox, random survival forests) add anything over a compact Cox model?
+6. How much does record-level splitting of stacked landmark rows inflate performance, compared with subject-level splitting?
 
-1. **Overall, the models look well calibrated.** A Cox model with 8 terms (Tier B) has a baseline 2-year AUC of 0.85 (95% CI 0.83 to 0.88) and O/E of 1.01 (0.90 to 1.13). A confirmed-dementia-only outcome gives the same picture (AUC 0.86, O/E 0.97).
-2. **Calibration differs by protocol era even when discrimination does not.** For the same Tier B model at baseline, 2-year O/E is 1.34 (1.17 to 1.53) in ADNI1, 0.85 (0.67 to 1.05) in ADNI-GO/2 and 0.50 (0.27 to 0.73) in ADNI3, so it under-predicts early and over-predicts late. A model trained on ADNI1 only and applied to ADNI-GO, ADNI2 and ADNI3 had an unchanged AUC (about 0.88) but a worse O/E (0.53, 0.43 to 0.64, versus 0.74 for the pooled model).
-3. **Loss to follow-up is large and could explain some of the gaps.** Of people observable at the 2-year horizon, 17% were lost at the baseline landmark and 35% at the 36-month landmark. Bounds on the missing outcomes show that censoring could reconcile the gaps in most groups (ADNI1 is already above predicted). For the 3-term baseline model (age, APOE4, CDR-SB), a covariate-based censoring correction (IPCW) leaves the era O/E values nearly unchanged, so measured covariates do not explain them.
-4. **Most subgroups are too small to audit.** Detecting a 20% miscalibration needs roughly 135 to 184 expected events in a subgroup. None of the 74 subgroup-by-landmark levels examined reaches that. Black and Hispanic participants have fewer than 10 events each at baseline, so only very large miscalibration (O/E below about 0.13 or above about 2.3) could be detected.
-5. **Richer models add little.** A 12-term Cox model, elastic-net Cox and a random survival forest improve baseline 2-year AUC by about 0.01 over the Tier B Cox model (the interval excludes 0 for the Cox and elastic-net models, not for the forest). At the later landmarks every interval includes 0.
-6. **Record-level splitting is a risk for flexible models only.** Stacking landmark rows and splitting by record leaves about 80% of test rows with a same-person row in training. This inflates AUC by at most 0.002 for the Cox model (interval includes 0) but by 0.014 to 0.022 for random survival forests.
-
-Details for each point are in the scripts (`R/`, listed in `R/README.md`) and the results they write.
+Results are not posted here while the manuscript is in preparation. ADNI asks that results be reviewed under its data use and publication policy before they are made public.
 
 ## What is and is not in this repository
 
 - **Included:** the analysis code only (`R/`).
-- **Not included:** ADNI data, any participant-level or derived participant-level file, and the full result tables and figures (only the summary below is shown). Under the ADNI Data Use Agreement, redistribution of participant-level data is prohibited.
+- **Not included:** ADNI data, any participant-level or derived participant-level file, and the full result tables and figures. Under the ADNI Data Use Agreement, redistribution of participant-level data is prohibited.
 
 ## To reproduce
 
