@@ -26,7 +26,8 @@ Results are not posted here while the manuscript is in preparation. ADNI asks th
 
 1. Apply for ADNI access at adni.loni.usc.edu and download the ADNIMERGE2 tables.
 2. Place them in a folder called `data and methods/` inside the project folder, with the scripts in `R/`.
-3. From the project folder run `source("R/run_all.R")` (about 25 minutes). See `R/README.md` for what each script does and writes.
+3. Install the pinned package versions from [`renv.lock`](renv.lock) (R 4.6.2): `Rscript -e 'install.packages("renv"); renv::activate(); renv::restore(prompt = FALSE)'`. CI installs the same versions and checks that every script parses; it cannot run the analysis without ADNI data.
+4. From the project folder run `source("R/run_all.R")` (about 25 minutes). See `R/README.md` for what each script does and writes.
 
 The scripts were developed on data downloaded on 11 November 2026 (diagnosis visits to 2026-11-09). ADNI data are updated over time, so later downloads may give slightly different numbers. Each script has built-in checks that print PASS or FAIL, and `run_all.R` summarises them.
 
